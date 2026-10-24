@@ -26,6 +26,23 @@ page captando leads numa planilha. Base: e-books de joelho, coluna e PRP (out/20
 - Sempre: o que é, como é feito, o que esperar, segurança, quem é e quem não é candidato, FAQ, CTA (Bento Gonçalves ou online, WhatsApp (54) 99689-1295), referências curtas, aviso "não substitui consulta", CRM-RS 23627 · RQE 14323.
 - Revisão de ética e precisão pela Têmis antes de entregar ao André.
 
+## 2b. Regra de escopo CFM (obrigatória para material leigo e publicidade)
+- PRP: a Resolução CFM nº 2.464/2026 (DOU 15/07/2026) autoriza só 4 indicações, como procedimento adjuvante:
+  osteoartrite de joelho, discopatia lombar, epicondilite lateral do cotovelo e reparo meniscal.
+- Material para paciente ou divulgação aborda SÓ as indicações autorizadas, com detalhe (como é feito, o que esperar, reabilitação).
+- Demais áreas: um único bloco "Em pesquisa, fora das indicações autorizadas pelo CFM", só com nomes. Sem bolinhas, rótulos de força ou números.
+- Art. 13: vedado prometer cura, garantir resultado, "regeneração assegurada", substituir cirurgia indicada ou alegar superioridade universal.
+- Frase obrigatória: "procedimento médico auxiliar e complementar, não substitui tratamento clínico, reabilitação ou cirurgia indicada".
+- Coluna (art. 7): dizer que é feito em hospital ou hospital-dia, guiado por imagem, por especialista com RQE habilitado.
+- Antes de qualquer tema novo (não só PRP), procurar a resolução CFM vigente no portal.cfm.org.br / DOU e aplicar a mesma regra.
+- No código (`src/build.py`): cada área tem `cfm=True/False`. Padrão = só CFM; `FULL=1 python3 src/build.py` gera a versão completa (uso interno).
+
+## 2c. Pré-voo Têmis (antes de mostrar ao André)
+Checklist: (1) só indicações autorizadas em destaque; (2) nenhum rótulo de evidência ou número fora delas;
+(3) nenhuma promessa/garantia/superioridade; (4) frase de procedimento auxiliar presente; (5) sem preço, antes e depois, depoimento;
+(6) CRM/RQE e aviso "não substitui consulta"; (7) referências conferidas (PubMed/Crossref: ano, volume, DOI); (8) zero travessões;
+(9) a LP também segue (1) a (4) no texto, meta description e og:description.
+
 ## 3. Design (marca)
 - Fonte da verdade: `/workspace/marca/LEIA-ME.md` e o manual em PDF. #66B2E0, #3A3C38, #FFFFFF, Sora, sem logo de IA.
 - Reaproveitar o kit: `src/style.css`, `src/svgs.py` (arcos da capa), `assets/` (Sora TTF + logos SVG `logo-h-dark` para fundo escuro, `logo-h-light` para fundo claro).
@@ -72,6 +89,9 @@ Alternativa já usada (joelho/coluna): Google Forms + entry IDs (sem script, mas
 - Registrar no Ledger/Notion e no proregen-cerebro (wiki/marca ou wiki/produtos).
 
 ## Lições aprendidas
+- CFM 2.464/2026: a primeira versão do e-book de PRP cobria 13 áreas com rótulos de evidência; foi refeita para as 4 autorizadas. Checar a resolução ANTES de escrever.
+- Páginas com poucos cards ficam vazias: completar com caixas "como é feito / depois" e callouts (candidatos, o que não faz, reabilitação, sinais de alerta).
+- Em build.py, não reutilizar o nome `A` (caminho dos assets) para função: quebrou o logo da última página.
 - Conferir números no PubMed custa segundos e evita erro (ex.: Meznerics 2022, OR 5,32 para fechamento completo de ferida: conferido no resumo).
 - Revisões do SciSpace citam fontes antigas (2007, 2012); priorizar 2018 em diante e marcar o que é antigo.
 - Aplicações perioperatórias (manguito, LCA) e Aquiles: dizer com clareza "sem benefício consistente".
