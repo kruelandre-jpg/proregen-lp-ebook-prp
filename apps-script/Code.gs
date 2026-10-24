@@ -17,7 +17,7 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sh = SHEET_NAME ? ss.getSheetByName(SHEET_NAME) : ss.getSheets()[0];
     sh.appendRow([
-      new Date(), clean_(p.nome), clean_(p.whatsapp), clean_(p.email), clean_(p.cidade),
+      Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'yyyy-MM-dd HH:mm:ss'), clean_(p.nome), clean_(p.whatsapp), clean_(p.email), clean_(p.cidade),
       clean_(p.queixa), clean_(p.detalhe), p.consentimento, clean_(p.origem)
     ]);
   } finally { lock.releaseLock(); }
