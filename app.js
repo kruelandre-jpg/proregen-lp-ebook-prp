@@ -96,6 +96,7 @@
   }
 
   function revealThankYou() {
+    try { if (typeof window.fbq === 'function') window.fbq('track', 'Lead'); } catch (e) {}
     if (formWrap) formWrap.hidden = true;
     if (thanks) {
       thanks.hidden = false;
