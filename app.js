@@ -61,13 +61,14 @@
     if (wa.length < 10 || wa.length > 11) errors.whatsapp = 'Informe um WhatsApp válido com DDD.';
     if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) errors.email = 'Informe um e-mail válido.';
     if (!data.cidade || data.cidade.trim().length < 2) errors.cidade = 'Informe sua cidade.';
-    if (!data.queixa) errors.queixa = 'Selecione uma opção.';
     if (!data.consentimento) errors.consentimento = 'Marque a autorização para receber o material.';
+    var temQueixa = !!(data.queixa || (data.detalhe || '').trim());
+    if (temQueixa && !data.consentimento_saude) errors.consentimento_saude = 'Você informou sua queixa. Marque a autorização de uso dos dados de saúde ou apague a queixa para continuar.';
     return errors;
   }
 
   function showFieldErrors(errors) {
-    ['nome', 'whatsapp', 'email', 'cidade', 'queixa', 'consentimento'].forEach(function (field) {
+    ['nome', 'whatsapp', 'email', 'cidade', 'queixa', 'consentimento', 'consentimento_saude'].forEach(function (field) {
       var el = document.getElementById('err-' + field);
       var input = document.getElementById(field);
       if (el) { el.textContent = errors[field] || ''; el.hidden = !errors[field]; }
@@ -86,8 +87,12 @@
     params.append('whatsapp', digitsOnly(data.whatsapp));
     params.append('email', data.email.trim());
     params.append('cidade', data.cidade.trim());
-    params.append('queixa', data.queixa);
-    params.append('detalhe', (data.detalhe || '').trim());
+    var temQueixa = !!(data.queixa || (data.detalhe || '').trim());
+    if (temQueixa && data.consentimento_saude) {
+      params.append('queixa', data.queixa);
+      params.append('detalhe', (data.detalhe || '').trim());
+    }
+    params.append('consentimento_saude', temQueixa && data.consentimento_saude ? 'Sim' : 'Nao');
     params.append('consentimento', data.consentimento ? 'Sim' : 'Nao');
     params.append('origem', cfg.origem || 'lp-ebook-prp');
     params.append('website', data.website || '');
@@ -114,7 +119,8 @@
       var data = {
         nome: v('nome'), whatsapp: v('whatsapp'), email: v('email'), cidade: v('cidade'),
         queixa: v('queixa'), detalhe: v('detalhe'), website: v('website'),
-        consentimento: !!(document.getElementById('consentimento') || {}).checked
+        consentimento: !!(document.getElementById('consentimento') || {}).checked,
+        consentimento_saude: !!(document.getElementById('consentimento_saude') || {}).checked
       };
 
       var errors = validate(data);

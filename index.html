@@ -105,9 +105,9 @@ fbq('track','PageView');
             </div>
 
             <div class="field">
-              <label for="queixa">Queixa principal</label>
-              <select id="queixa" name="queixa" required>
-                <option value="" disabled selected>Selecione…</option>
+              <label for="queixa">Queixa principal <span class="hint">(opcional)</span></label>
+              <select id="queixa" name="queixa">
+                <option value="" selected>Prefiro não informar</option>
                 <option>Joelho</option><option>Quadril</option><option>Coluna</option><option>Ombro</option><option>Tendão</option><option>Ferida</option><option>Outra</option>
               </select>
               <span class="field-error" id="err-queixa" hidden></span>
@@ -121,6 +121,12 @@ fbq('track','PageView');
             <div class="field field-check">
               <label class="check"><input type="checkbox" id="consentimento" name="consentimento" required> Autorizo receber mensagens da Proregen por WhatsApp e e-mail</label>
               <span class="field-error" id="err-consentimento" hidden></span>
+            </div>
+
+            <div class="field field-check">
+              <label class="check"><input type="checkbox" id="consentimento_saude" name="consentimento_saude"> Autorizo o uso das informações de saúde que informei (queixa) apenas para o Dr. André Kruel e equipe entenderem meu caso e entrarem em contato. Posso revogar quando quiser.</label>
+              <small class="hint" style="display:block;margin:4px 0 0 30px">Necessário só se você preencheu a queixa.</small>
+              <span class="field-error" id="err-consentimento_saude" hidden></span>
             </div>
 
             <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
